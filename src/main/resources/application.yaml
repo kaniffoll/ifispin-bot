@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: ifispinbot
+
+telegram:
+  botName: ${TELEGRAM_BOT_NAME}
+  token: ${TELEGRAM_BOT_TOKEN}
