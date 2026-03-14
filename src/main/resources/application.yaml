@@ -5,3 +5,7 @@ spring:
 telegram:
   botName: ${TELEGRAM_BOT_NAME}
   token: ${TELEGRAM_BOT_TOKEN}
+
+redis:
+  host: ${REDIS_HOST}
+  port: ${REDIS_PORT}
