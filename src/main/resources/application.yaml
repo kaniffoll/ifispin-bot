@@ -9,3 +9,8 @@ telegram:
 redis:
   host: ${REDIS_HOST}
   port: ${REDIS_PORT}
+
+api:
+  url: https://api.semanticscholar.org/graph/v1/
+  fields: title,url,publicationDate
+  searchPath: /paper/search/
