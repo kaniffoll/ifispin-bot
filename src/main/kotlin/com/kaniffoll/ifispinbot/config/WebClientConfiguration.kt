@@ -14,7 +14,7 @@ class WebClientConfiguration(private val apiConfig: ApiConfig) {
         WebClient.builder()
             .baseUrl(apiConfig.url)
             .codecs { configurer ->
-                configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024) // 10 MB
+                configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)
             }
             .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .build()

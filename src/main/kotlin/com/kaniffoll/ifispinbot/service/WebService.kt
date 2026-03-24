@@ -11,24 +11,29 @@ class WebService(
     private val webClient: WebClient,
     private val apiConfig: ApiConfig
 ) {
-    fun getSources(query: String, offset: Int = 0, limit: Int = 10): Mono<ApiResponse> =
+    fun getSources(query: String, page: Int = 1, perPage: Int = 10): Mono<ApiResponse> =
         webClient.get()
             .uri { uriBuilder ->
-                uriBuilder
-                    .path(apiConfig.searchPath)
-                    .queryParam(QUERY_PARAM_NAME, query)
-                    .queryParam(FIELDS_PARAM_NAME, apiConfig.fields)
-                    .queryParam(OFFSET_PARAM_NAME, offset)
-                    .queryParam(LIMIT_PARAM_NAME, limit)
+                println(query)
+                val uri = uriBuilder
+                    .path(apiConfig.path)
+                    .queryParam(apiConfig.apiKeyParam, apiConfig.apiKey)
+                    .queryParam(apiConfig.searchParam, query)
+                    .queryParam(apiConfig.filterParam, FILTER_PARAMS)
+                    .queryParam(apiConfig.selectParam, SELECT_PARAMS)
+                    .queryParam(apiConfig.pageParam, page)
+                    .queryParam(apiConfig.perPageParam, perPage)
                     .build()
+                println("FINAL URI: $uri")
+                uri
             }
             .retrieve()
             .bodyToMono(ApiResponse::class.java)
 
     companion object {
-        private const val QUERY_PARAM_NAME = "query"
-        private const val OFFSET_PARAM_NAME = "offset"
-        private const val LIMIT_PARAM_NAME = "limit"
-        private const val FIELDS_PARAM_NAME = "fields"
+        private const val FILTER_PARAMS = "language:en|ru"
+        private const val SELECT_PARAMS =
+            "id,doi,display_name,cited_by_count,language,publication_year"
     }
+
 }

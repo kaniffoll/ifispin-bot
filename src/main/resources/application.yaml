@@ -11,6 +11,12 @@ redis:
   port: ${REDIS_PORT}
 
 api:
-  url: https://api.semanticscholar.org/graph/v1/
-  fields: title,url,publicationDate
-  searchPath: /paper/search/
+  url: https://api.openalex.org
+  path: /works
+  apiKey: ${API_KEY}
+  apiKeyParam: api_key
+  searchParam: search
+  filterParam: filter
+  selectParam: select
+  pageParam: page
+  perPageParam: per_page
