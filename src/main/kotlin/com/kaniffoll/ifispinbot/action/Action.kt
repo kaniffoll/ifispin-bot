@@ -1,5 +1,5 @@
 package com.kaniffoll.ifispinbot.action
 
-interface Action {
-    operator fun invoke(chatId: Long)
+interface Action<in I, out O> {
+    operator fun invoke(input: I): O
 }

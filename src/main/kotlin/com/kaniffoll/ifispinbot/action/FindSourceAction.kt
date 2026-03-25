@@ -10,12 +10,12 @@ import org.telegram.telegrambots.meta.generics.TelegramClient
 class FindSourceAction(
     private val telegramClient: TelegramClient,
     private val sessionService: SessionService
-): Action {
-    override operator fun invoke(chatId: Long) {
-        sessionService.setState(chatId, UserSession.WaitForSource)
+): Action<Long, Unit> {
+    override operator fun invoke(input: Long) {
+        sessionService.setState(input, UserSession.WaitForSource)
         telegramClient.execute(SendMessage.builder()
             .text(ActionStringRes.FIND_SOURCE_MESSAGE)
-            .chatId(chatId)
+            .chatId(input)
             .build()
         )
     }

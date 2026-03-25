@@ -9,13 +9,13 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import org.telegram.telegrambots.meta.generics.TelegramClient
 
 @Component
-class StartAction(private val telegramClient: TelegramClient) : Action {
-    override operator fun invoke(chatId: Long) {
-        val keyboardButtonsRows = CallbackQuery.values.map {
+class StartAction(private val telegramClient: TelegramClient) : Action<Long, Unit> {
+    override operator fun invoke(input: Long) {
+        val keyboardButtonsRows = CallbackQuery.findValues.map {
             InlineKeyboardRow(
                 InlineKeyboardButton.builder()
                     .text(it.text)
-                    .callbackData(it.data)
+                    .callbackData(it.data as String)
                     .build()
             )
         }
@@ -23,7 +23,7 @@ class StartAction(private val telegramClient: TelegramClient) : Action {
         telegramClient.execute(
             SendMessage.builder()
                 .text(ActionStringRes.START_MESSAGE)
-                .chatId(chatId)
+                .chatId(input)
                 .build()
                 .apply { replyMarkup = InlineKeyboardMarkup(keyboardButtonsRows) }
         )

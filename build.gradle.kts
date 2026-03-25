@@ -3,6 +3,7 @@ plugins {
 	kotlin("plugin.spring") version "2.2.21"
 	id("org.springframework.boot") version "4.0.3"
 	id("io.spring.dependency-management") version "1.1.7"
+	id("org.jetbrains.kotlin.plugin.serialization") version "2.2.21"
 }
 
 group = "com.kaniffoll"
@@ -28,6 +29,7 @@ dependencies {
 	implementation("org.telegram:telegrambots-meta:9.4.0")
 	implementation("org.telegram:telegrambots-client:9.4.0")
 	implementation("redis.clients:jedis:7.4.0")
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json")
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")

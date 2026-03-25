@@ -10,12 +10,12 @@ import org.telegram.telegrambots.meta.generics.TelegramClient
 class FindProfessorAction(
     private val telegramClient: TelegramClient,
     private val sessionService: SessionService
-): Action {
-    override operator fun invoke(chatId: Long) {
-        sessionService.setState(chatId, UserSession.WaitForProfessor)
+): Action<Long, Unit> {
+    override operator fun invoke(input: Long) {
+        sessionService.setState(input, UserSession.WaitForProfessor)
         telegramClient.execute(SendMessage.builder()
             .text(ActionStringRes.FIND_PROFESSOR_MESSAGE)
-            .chatId(chatId)
+            .chatId(input)
             .build()
         )
     }

@@ -10,6 +10,8 @@ data class ApiResponse(
 data class Meta(
     val count: Int,
     val page: Int,
+    @JsonProperty("per_page")
+    val perPage: Int,
 )
 
 data class Work(

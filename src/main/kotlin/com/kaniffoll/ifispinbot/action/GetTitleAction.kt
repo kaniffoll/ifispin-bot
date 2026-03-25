@@ -1,5 +1,6 @@
 package com.kaniffoll.ifispinbot.action
 
+import com.kaniffoll.ifispinbot.action.model.GetTitleInput
 import com.kaniffoll.ifispinbot.service.SessionService
 import org.springframework.stereotype.Component
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
@@ -9,13 +10,13 @@ import org.telegram.telegrambots.meta.generics.TelegramClient
 class GetTitleAction(
     private val telegramClient: TelegramClient,
     private val sessionService: SessionService
-) : MessageAction {
-    override fun invoke(chatId: Long, message: String) {
-        sessionService.clear(chatId)
+) : Action<GetTitleInput, Unit> {
+    override operator fun invoke(input: GetTitleInput) {
+        sessionService.clear(input.chatId)
         telegramClient.execute(
             SendMessage.builder()
-                .text(message)
-                .chatId(chatId)
+                .text(input.message)
+                .chatId(input.chatId)
                 .build()
         )
     }
