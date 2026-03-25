@@ -19,9 +19,22 @@ class SessionRepository(private val jedisClient: RedisClient) {
 
     fun clear(chatId: String) {
         jedisClient.del(chatId)
+        jedisClient.del(QUERY_PREFIX + chatId)
     }
+
+    fun setQueryForSources(chatId: String, query: String) {
+        jedisClient.set(
+            QUERY_PREFIX + chatId,
+            query,
+            SetParams.setParams().ex(TTL)
+        )
+    }
+
+    fun getQueryForSources(chatId: String): String? =
+        jedisClient.get(QUERY_PREFIX + chatId)
 
     companion object {
         private const val TTL = 1800L
+        private const val QUERY_PREFIX = "query"
     }
 }

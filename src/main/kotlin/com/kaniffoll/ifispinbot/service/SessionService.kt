@@ -16,7 +16,12 @@ class SessionService(private val sessionRepository: SessionRepository) {
         return null
     }
 
-    fun clear(chatId: Long) {
+    fun clear(chatId: Long) =
         sessionRepository.clear(chatId.toString())
-    }
+
+    fun setQueryForSources(chatId: Long, query: String) =
+        sessionRepository.setQueryForSources(chatId.toString(), query)
+
+    fun getQueryForSources(chatId: Long): String? =
+        sessionRepository.getQueryForSources(chatId.toString())
 }

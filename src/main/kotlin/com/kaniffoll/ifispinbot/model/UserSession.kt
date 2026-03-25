@@ -8,7 +8,7 @@ sealed class UserSession(val id: Int) {
         val valuesMap: Map<Int, UserSession> by lazy {
             mapOf(
                 WAIT_FOR_PROFESSOR_ID to WaitForProfessor,
-                WAIT_FOR_SOURCE_ID to WaitForSource
+                WAIT_FOR_SOURCE_ID to WaitForSource,
             )
         }
         private const val WAIT_FOR_PROFESSOR_ID = 1

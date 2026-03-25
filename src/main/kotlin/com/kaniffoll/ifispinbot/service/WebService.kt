@@ -14,7 +14,6 @@ class WebService(
     fun getSources(query: String, page: Int = 1, perPage: Int = 10): Mono<ApiResponse> =
         webClient.get()
             .uri { uriBuilder ->
-                println(query)
                 val uri = uriBuilder
                     .path(apiConfig.path)
                     .queryParam(apiConfig.apiKeyParam, apiConfig.apiKey)
@@ -24,7 +23,6 @@ class WebService(
                     .queryParam(apiConfig.pageParam, page)
                     .queryParam(apiConfig.perPageParam, perPage)
                     .build()
-                println("FINAL URI: $uri")
                 uri
             }
             .retrieve()

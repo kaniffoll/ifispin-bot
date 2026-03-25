@@ -15,7 +15,7 @@ class StartAction(private val telegramClient: TelegramClient) : Action<Long, Uni
             InlineKeyboardRow(
                 InlineKeyboardButton.builder()
                     .text(it.text)
-                    .callbackData(it.data as String)
+                    .callbackData(it.data)
                     .build()
             )
         }

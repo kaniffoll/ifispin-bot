@@ -6,5 +6,5 @@ object ActionStringRes {
     const val FIND_SOURCE_MESSAGE = "Введите ключевые слова для поиска литературы:"
     const val WRONG_REQ_MESSAGE = "Вы ввели неккоректные данные, либо сессия истекла"
     const val GET_RESOURCES_WAITING_MESSAGE = "Запрос получен..."
-    const val NEXT_PAGE_TEXT = "Следующая страница"
+    const val FIND_STOP_MESSAGE = "Поиск остановлен"
 }
