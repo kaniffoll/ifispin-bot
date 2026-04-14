@@ -38,3 +38,8 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+### Python ###
+.fastapi-service/venv
+*.pyc
+__pycache__/
