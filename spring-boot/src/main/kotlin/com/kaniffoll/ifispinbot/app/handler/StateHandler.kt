@@ -19,7 +19,9 @@ class StateHandler(
 ) {
     operator fun invoke(session: UserSession, text: String, chatId: Long) {
         when(session) {
-            UserSession.WaitForProfessor -> getTitleAction(GetTitleInput(chatId, text))
+            UserSession.WaitForProfessor -> 
+                getTitleAction(GetTitleInput(chatId, text))
+
             UserSession.WaitForSource -> {
                 when (val res = SourceInputValidator.validateInput(text)) {
                     ValidatorResponse.OK ->

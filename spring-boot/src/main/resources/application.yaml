@@ -20,3 +20,7 @@ api:
   selectParam: select
   pageParam: page
   perPageParam: per_page
+
+fast-api:
+  host: ${FASTAPI_HOST}
+  port: ${FASTAPI_PORT}
