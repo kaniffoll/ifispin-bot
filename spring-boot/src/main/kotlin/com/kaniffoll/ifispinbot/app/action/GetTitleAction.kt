@@ -27,13 +27,21 @@ class GetTitleAction(
         )
 
         fastApiService.getProfessors(input.message).subscribe { response ->
-            telegramClient.execute( 
+            if (response.results.isNotEmpty()) {
+                telegramClient.execute(
+                    SendMessage.builder()
+                        .text(ActionStringRes.SUCCESS_FIND_PROFESSORS_MESSAGE)
+                        .chatId(input.chatId)
+                        .build()
+                )
+            }
+
+            telegramClient.execute(
                 SendMessage.builder()
                     .text(response.toString())
                     .chatId(input.chatId)
                     .build()
             )
         }
-
    }
 }
